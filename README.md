@@ -1,29 +1,63 @@
-## Rooms and Doors
-This is a type of a memory game, where you pass from one room to another via the available doors in each room, and your goal is to open the final door.
+# Rooms & Doors
 
-Each game starts with a random layout of rooms and doors, which can be viewed as a connected graph, with nodes corresponding to rooms, and edges to doors. Starting from the first room, you move to the next room by choosing one of the doors in the room; you pass through a door by clicking on it with the mouse, or by pressing enter after moving to the location of the door with arrow keys. You can also choose to go back via the portal represented with concentric circles symbol, unless you are in the first room, of course.
+A browser-based memory game built around random graph traversal — where both you and your AI opponents navigate the same randomly generated maze, but only you know the rules.
 
-There are 12 stages, with each stage characterized by a different type of door, with the final door located at the final 12th stage. You should recognize that this is the final door by its special appearance (and also by counting). You move from one stage to the next by reaching a room containing a new type of door. It is not enough to reach the final door in order to open it, as it is locked; it will be unlocked once you collect the 12 stones scattered throughout the rooms, one stone per stage. Don't leave a stage without finding the stone it contains!
+🎮 **[Play it live](https://avikpln.github.io/rad/)**
 
-Finally, note that you are competing against random players. Luckily for them, they do not need to collect stones, but only reach the final door in order the win the game, in which case you lose. You can change the number of "randys" you are competing against to be anywhere between 0 and 10.
+---
 
-Have fun!
+## The Game
 
+You start in the first room of a randomly generated maze. Your goal: find and open the final door, hidden somewhere at stage 12. Move between rooms by clicking doors, backtrack through portals, and collect one stone per stage — the final door won't open until you have all 12.
 
-## RESPONSIBILITIES
+The catch: you're not alone. A configurable number of **random walkers** (0–10) are racing through the same maze simultaneously. They don't need to collect stones — they just need to reach the final door before you do.
 
-- Documentation
+---
 
-- Design [OOD]
+## Algorithmic Design
 
-- Algorithms
+The core design question behind this project was: **what graph structure makes a random walk take the longest to reach the exit?**
 
-- HTML, CSS, JavaScript
+This is a well-studied problem in the theory of random walks on graphs. The worst-case graph for a random walker — the one that maximizes expected hitting time to the target — is related to structures with bottleneck topologies (such as the lollipop graph). In practice, **random trees** were chosen as the layout for each of the 12 stages, providing a good balance between theoretical difficulty and playable structure: trees have no cycles, so a random walker can easily get "trapped" exploring dead-end branches far from the exit.
 
-- Version Control [Git, GitHub]
+Each stage generates a fresh random tree, with rooms as nodes and doors as edges. The competing randys perform true random walks on this structure in real time — meaning the graph layout directly and measurably affects how hard the game is for both you and them.
 
-- Quality Assurance [test cases, unit testing]
+---
 
-- User Interface/Experience [GUI, Responsive Web Design]
+## Origins
 
-- Cross-Browser Testing [BrowserStack]
+This project began as a Python desktop application ([radgame](https://github.com/avikpln/radgame)), where the graph structure and random-walk mechanics were first developed and analyzed. It was later reimagined as a web application using HTML, CSS, and JavaScript, with significant enhancements to gameplay, visuals, and interactivity added along the way.
+
+---
+
+## Tech Stack
+
+- **JavaScript** — game engine, graph generation, random walk simulation
+- **HTML / CSS** — UI and responsive layout
+- **Graph algorithms** — random tree generation, random walk dynamics
+
+---
+
+## Running Locally
+
+No build step required. Just clone and open:
+
+```bash
+git clone https://github.com/avikpln/rad.git
+cd rad
+open index.html   # or drag into your browser
+```
+
+---
+
+## Project Structure
+
+```
+rad/
+├── script/       # Game logic, graph generation, random walk engine
+├── css/          # Styling and layout
+├── images/       # Room and door assets
+├── sound/        # Audio effects
+├── design/       # Design assets
+└── index.html    # Entry point
+```
