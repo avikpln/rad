@@ -4,6 +4,8 @@ A browser-based memory game built around random graph traversal — where both y
 
 🎮 **[Play it live](https://avikpln.github.io/rad/)**
 
+![Rooms & Doors screenshot](images/screenshot.png)
+
 ---
 
 ## The Game
