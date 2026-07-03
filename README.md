@@ -56,10 +56,47 @@ open index.html   # or drag into your browser
 
 ```
 rad/
-├── script/       # Game logic, graph generation, random walk engine
-├── css/          # Styling and layout
-├── images/       # Room and door assets
-├── sound/        # Audio effects
-├── design/       # Design assets
-└── index.html    # Entry point
+├── css/
+│   └── styles.css
+├── design/                 # Design assets and UML diagrams
+│   ├── game.bmp
+│   ├── game.gaphor
+│   ├── gui.gaphor
+├── images/
+│   ├── favicon.ico
+│   └── screenshot.png
+├── meta/                   # Project metadata
+│   ├── academy
+│   ├── acknowledgements
+│   ├── hierarchy
+│   └── version
+├── quotes/                 # Quote database
+│   ├── JakubPetriska.zip
+│   ├── quotes.csv
+│   └── quotes.py
+├── script/
+│   ├── game/               # RAD game logic
+│   │   ├── test/           # Game testing utilities
+│   │   ├── cell.js
+│   │   ├── direction.js
+│   │   ├── door.js
+│   │   ├── element.js
+│   │   ├── game-state.js
+│   │   ├── game.js
+│   │   ├── location.js
+│   │   ├── player.js
+│   │   ├── room.js
+│   │   └── stone.js
+│   ├── gui/                # Graphical user interface
+│   ├── library/            # Shared utilities
+│   └── main.js
+├── sound/                  # Sound effects and voice clips
+│   ├── complete.mp3
+│   ├── ...
+│   └── wow-who-are-you.mp3
+├── index.html
+├── LICENSE
+├── README.md
+├── TODO.md
+└── zipit.bat
 ```
